@@ -1,3 +1,5 @@
+var React = require('react');
+
 /** @jsx React.DOM */
 var converter = new Showdown.converter();
 
