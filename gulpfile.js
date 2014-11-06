@@ -6,7 +6,7 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var watchify = require('watchify');
 var uglify = require('gulp-uglify');
-var rimraf = require('gulp-rimraf');
+var del = require('del');
 var streamify = require('gulp-streamify');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
@@ -98,8 +98,9 @@ gulp.task('copy', function () {
 
 // Clean build.
 gulp.task('clean', function () {
-	return gulp.src(opts.dist.paths.root, { read: false })
-		.pipe(rimraf({ force: true }));
+//	return gulp.src(opts.dist.paths.root, { read: false })
+//		.pipe(del({ force: true }));
+    del(opts.dist.paths.root);
 });
 
 // Watch non-js stuff.
