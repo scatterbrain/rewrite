@@ -11,10 +11,12 @@ var streamify = require('gulp-streamify');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var minifyCSS = require('gulp-minify-css');
+var transform = require('vinyl-transform');
+var rename = require("gulp-rename");
 
 // Build options.
 var opts = {
-	jsEntryFile: './public/javascripts/comments.js',
+	jsEntryFile: './public/javascripts/comments.jsx',
 	bundleName: 'app.js',
 	app: {
 		globs: {
@@ -36,6 +38,8 @@ var opts = {
 	}
 };
 
+/*
+
 // Bundle js.
 function jsBundler (bundler) {
 	return bundler.bundle()
@@ -43,6 +47,10 @@ function jsBundler (bundler) {
 		.on('error', function (e) {
 			gutil.log('Browserify Error', e.message);
 		})
+                .on('prebundle', function(bundler) {
+                  //bundler.require('./public/javascripts/comments.js'); 
+                    bundle.require("react");
+                })
 		.pipe(source(opts.bundleName))
 		//.pipe(streamify(uglify()))
 		.pipe(gulp.dest(opts.dist.paths.javascript));
@@ -65,6 +73,26 @@ gulp.task('browserify', function () {
 	var bundler = browserify(opts.jsEntryFile);
 
 	return jsBundler(bundler);
+});
+*/
+
+gulp.task('browserify', function () {
+  // browserify -r react -r public/javascripts/comments.jsx > public/bundle/javascripts/bundle.js
+  var browserified = transform(function(filename) {
+    return browserify()
+
+      // -r react
+      // update below with the correct path to react/react.js node_module
+      .require('./node_modules/react/react.js', { expose: 'react'})
+
+      // -r public/javascripts/comments.jsx
+      .require(filename, {expose: 'myComments'})
+      .bundle();
+  });
+  return gulp.src(opts.jsEntryFile)
+    .pipe(browserified)
+    .pipe(rename(opts.bundleName))
+    .pipe(gulp.dest(opts.dist.paths.javascript));
 });
 
 // Compiles and minifies sass to a single css file.
@@ -98,8 +126,6 @@ gulp.task('copy', function () {
 
 // Clean build.
 gulp.task('clean', function () {
-//	return gulp.src(opts.dist.paths.root, { read: false })
-//		.pipe(del({ force: true }));
     del(opts.dist.paths.root);
 });
 
@@ -119,6 +145,7 @@ gulp.task('default', [
 	'copy',
 	'styles-base',
 	'styles-modules',
-	'watch',
-	'watchify'
+        'browserify'
+//	'watch',
+//	'watchify'
 ]);

@@ -5,7 +5,7 @@ var router = express.Router();
 
 var comments = [];
 
-//var commentsC = React.createFactory(require('./comments.js'));
+var commentsC = React.createFactory(require('./comments.js'));
 
 router.get('/', function(req, res) {
     res.send(JSON.stringify(comments));
