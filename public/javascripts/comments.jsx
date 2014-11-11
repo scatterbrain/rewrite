@@ -1,9 +1,24 @@
 /** @jsx React.DOM */
-var converter = new Showdown.converter();
+
+var React = require('react');
+var marked = require('marked');
 
 var Comment = React.createClass({
   render: function() {
-    var rawMarkup = converter.makeHtml(this.props.children.toString());
+
+    marked.setOptions({
+      renderer: new marked.Renderer(),
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: true,
+      smartLists: true,
+      smartypants: false
+    });
+    var rawMarkup = marked(this.props.children.toString());
+    //var rawMarkup = this.props.children.toString();
+
     return (
       <div className="comment">
         <h2 className="commentAuthor">
@@ -111,7 +126,5 @@ var CommentForm = React.createClass({
   }
 });
 
-React.renderComponent(
-  <CommentBox url="comments" pollInterval={2000} />,
-  document.getElementById('content')
-);
+
+module.exports = CommentBox;

@@ -3,6 +3,9 @@
 ##Install modules
 `npm install`
 
+## Browserify
+`gulp`
+
 ##Start server
 `npm start`
 

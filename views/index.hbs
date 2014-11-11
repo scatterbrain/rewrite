@@ -2,6 +2,19 @@
 <p>Welcome to {{title}}</p>
 
 <div id="content">
-
+    {{{content}}}
 </div>
-<script type="text/jsx" src="javascripts/comments.js"></script>
+
+<script src="bundle/javascripts/app.js"></script>
+
+<script>
+    var React = require('react')
+    var CommentBox = require('myComments');
+    var CommentBoxElement = React.createElement(
+            CommentBox, 
+            {url: "comments", pollInterval: 2000});
+    React.renderComponent(
+      CommentBoxElement,
+      document.getElementById('content')
+    );
+</script>
