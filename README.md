@@ -9,4 +9,8 @@
 ##Start server
 `npm start`
 
-Open localhost:3000 in browser. 
+Open localhost:3000 in browser.
+
+##Testing
+`npm test`
+
