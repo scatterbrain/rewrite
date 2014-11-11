@@ -86,56 +86,6 @@ gulp.task('browserify', function () {
 	return jsBundler(bundler);
 });
 
-
-/*
-function jsbundle(bundler) {
-    // browserify -r react -r public/javascripts/comments.jsx > public/bundle/javascripts/bundle.js
-    var browserified = transform(function(filename) {
-        return bundler 
-
-        // -r react
-        // update below with the correct path to react/react.js node_module
-        .require('./node_modules/react/react.js', { expose: 'react'})
-
-        // -r public/javascripts/comments.jsx
-        .require(filename, {expose: 'myComments'})
-        .bundle();
-    });
-    return gulp.src(opts.jsEntryFile)
-    .pipe(browserified)
-    .pipe(rename(opts.bundleName))
-    .pipe(gulp.dest(opts.dist.paths.javascript));
-}
-
-gulp.task('browserify', function () {
-
-    var args = {
-        entries: [opts.jsEntryFile], // Only need initial file, browserify finds the deps
-        debug: true // Gives us sourcemapping
-    };
-
-    var bundler = browserify(args);
-    return jsbundle(bundler);
-});
-
-// Live watch js changes.
-gulp.task('watchify', function () {
-
-    var args = {
-        entries: [opts.jsEntryFile], // Only need initial file, browserify finds the deps
-        debug: true, // Gives us sourcemapping
-        cache: {}, packageCache: {}, fullPaths: true // Requirement of watchify
-    };
-
-    var b = browserify(args);
-    b.add(opts.jsEntryFile);
-
-    var bundler = watchify(b);
-    bundler.on('update', jsbundle.bind(this, bundler));
-
-    return jsbundle(bundler);
-});
-*/
 // Compiles and minifies sass to a single css file.
 function compileSass (compileGlob, outName) {
 	gulp.src(compileGlob)
