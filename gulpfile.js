@@ -14,6 +14,11 @@ var minifyCSS = require('gulp-minify-css');
 var transform = require('vinyl-transform');
 var rename = require("gulp-rename");
 
+var reactify = require('reactify');
+var livereload = require('gulp-livereload');
+var gutil = require('gulp-util');
+var gulpif = require('gulp-if');
+
 // Build options.
 var opts = {
 	jsEntryFile: './public/javascripts/comments.jsx',
@@ -84,6 +89,40 @@ gulp.task('browserify', function () {
 
 	var bundler = browserify(args);
 	return jsBundler(bundler);
+});
+
+function handleError(task) {
+    return function(err) {
+        gutil.log(gutil.colors.red(err));
+        notify.onError(task + ' failed, check the logs..')(err);
+
+        // Keep gulp or browserify from hanging on this task
+        this.emit('end');
+    };
+};
+
+gulp.task('test', function () {
+    var componentToTestPath = gutil.env.tests;
+    var bundler = browserify(componentToTestPath, watchify.args);
+
+    if(gutil.env.watch) {
+        livereload.listen();
+        bundler = watchify(bundler);
+    }
+
+    bundler.transform(reactify);
+
+    var rebundle = function() {
+        bundler.bundle()
+           .on('error', handleError('Browserify'))
+            .pipe(source(componentToTestPath))
+            .pipe(gulp.dest('./.tmp/'))
+            .pipe(gulpif(gutil.env.watch, livereload()));
+    };
+
+    bundler.on('update', rebundle);
+
+    return rebundle();
 });
 
 // Compiles and minifies sass to a single css file.
