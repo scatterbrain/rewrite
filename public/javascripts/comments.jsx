@@ -2,6 +2,7 @@
 
 var React = require('react');
 var marked = require('marked');
+var $ = require('jquery');
 
 var Comment = React.createClass({
   render: function() {

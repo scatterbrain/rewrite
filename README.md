@@ -4,7 +4,7 @@
 `npm install`
 
 ## Browserify
-`gulp`
+`gulp browserify`
 
 ##Start server
 `npm start`
