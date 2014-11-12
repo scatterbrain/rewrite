@@ -12,15 +12,17 @@ describe('CommentBox', function() {
       <CommentBox url="comments" pollInterval={2000} />
     );
 
-    // Verify that it's Off by default
-    var label = TestUtils.findRenderedDOMComponentWithTag(
-      checkbox, 'label');
-    expect(label.getDOMNode().textContent).toEqual('2000');
+    // Verify that commentbox's form is empty by default
+    //var form = TestUtils.findRenderedDOMComponentWithTag(
+     // commentbox, 'form');
+    //expect(form.getDOMNode().textContent).toEqual('2000');
 
     // Simulate a click and verify that it is now On
-    var input = TestUtils.findRenderedDOMComponentWithTag(
-      checkbox, 'input');
-    TestUtils.Simulate.change(input);
-    expect(label.getDOMNode().textContent).toEqual('On');
+    var commentForm = TestUtils.findRenderedDOMComponentWithClass(
+      commentbox, 'commentForm');
+    
+      //TestUtils.Simulate.change(input);
+    
+    //expect(label.getDOMNode().textContent).toEqual('On');
   });
 });
