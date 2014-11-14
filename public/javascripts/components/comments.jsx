@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var React = require('react');
 var marked = require('marked');
 var $ = require('jquery');
@@ -18,7 +16,6 @@ var Comment = React.createClass({
       smartypants: false
     });
     var rawMarkup = marked(this.props.children.toString());
-    //var rawMarkup = this.props.children.toString();
 
     return (
       <div className="comment">
