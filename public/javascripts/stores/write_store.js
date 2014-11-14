@@ -9,7 +9,7 @@ var WriteDispatcher = require('../dispatcher/write_dispatcher'),
     ActionTypes = WriteConstants.ActionTypes,
     CHANGE_EVENT = 'change';
 
-var _currentDocument = {};
+var _currentDocument = null;
 
 var WriteStore = assign({}, EventEmitter.prototype, {
     
@@ -42,6 +42,10 @@ var WriteStore = assign({}, EventEmitter.prototype, {
     },
 
     getDocument : function() {
+        if (!_currentDocument) {
+            return this.createDocument('Type some *markdown* here!');
+        }
+
         return assign({}, _currentDocument);
     }
         
@@ -67,7 +71,6 @@ WriteStore.dispatchToken = WriteDispatcher.register(function(payload) {
             break;
 
         case ActionTypes.RECEIVE_SERVER_DOCUMENT:
-            console.log("SERVER DOC");
             WriteStore.receiveDocument(action.serverDocument);       
             WriteStore.emitChange();
             break;

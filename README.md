@@ -3,15 +3,15 @@
 ##Install modules
 `npm install`
 
-## Browserify
-`gulp browserify`
+## Browserify continuously
+`gulp watchify`
 
 ##Start server
 `npm start`
 
 Open localhost:3000 in browser.
 
-##Automatically reloading server
+##Start with automatically reloading server
 `npm install -g nodemon`
 `nodemon`
 
