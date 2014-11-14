@@ -17,7 +17,6 @@ var WriteDispatcher = assign(new Dispatcher(), {
             action : action
         }; 
 
-        console.log("DISPATCH");
         this.dispatch(payload);
     },
 

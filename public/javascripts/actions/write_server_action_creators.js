@@ -1,4 +1,6 @@
-var WriteDispatcher = require('../dispatcher/write_dispatcher.js'),
+"use strict";
+
+var WriteDispatcher = require('../dispatcher/write_dispatcher'),
     WriteConstants = require('../constants/write_constants'),
     WriteStore = require('../stores/write_store'), //Not used but must be required so that is up and running before we start receiving stuff from the server     
     ActionTypes = WriteConstants.ActionTypes;

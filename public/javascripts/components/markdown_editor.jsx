@@ -3,6 +3,7 @@
 var React = require('react'), 
     marked = require('marked'), 
     WriteStore = require('../stores/write_store'), 
+    WriteViewActionCreator = require('../actions/write_view_action_creators'),
     util = require('util');
     
 
@@ -16,8 +17,6 @@ marked.setOptions({
     smartLists: true,
     smartypants: false
 });
-
-
 
 function getStateFromStores() {
     return {
@@ -61,7 +60,7 @@ var MarkdownEditor = React.createClass({
      * Something was written on the text field. React callback.
      */
     handleChange: function() {
-        //TODO NEXT DISPATCH A MESSAGE TO UPDATE THE STORE!
+        WriteViewActionCreator.textEdited(this.refs.textarea.getDOMNode().value);
         //this.setState({value: this.refs.textarea.getDOMNode().value});
     },
     
@@ -72,7 +71,7 @@ var MarkdownEditor = React.createClass({
             <textarea
             onChange={this.handleChange}
             ref="textarea"
-            defaultValue={this.state.value} />
+            defaultValue={this.state.document.text} />
             <h3>Output</h3>
             <div
             className="content"
