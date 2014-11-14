@@ -11,6 +11,11 @@
 
 Open localhost:3000 in browser.
 
+##Automatically reloading server
+`npm install -g nodemon`
+`nodemon`
+
+
 ##Testing
 `npm test`
 

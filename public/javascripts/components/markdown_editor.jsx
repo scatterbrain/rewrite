@@ -4,6 +4,17 @@
 var React = require('react');
 var marked = require('marked');
 
+marked.setOptions({
+    renderer: new marked.Renderer(),
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: true,
+    smartLists: true,
+    smartypants: false
+});
+
 var MarkdownEditor = React.createClass({
   getInitialState: function() {
     return {value: 'Type some *markdown* here!'};
