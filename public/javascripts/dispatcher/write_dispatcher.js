@@ -1,3 +1,5 @@
+"use strict";
+
 var Dispatcher = require('flux').Dispatcher, 
     assign = require('object-assign'), 
     WriteConstants = require('../constants/write_constants'), 
@@ -11,10 +13,11 @@ var WriteDispatcher = assign(new Dispatcher(), {
      */
     handleServerAction : function(action) {
         var payload = {
-            source : PayLoadSources.SERVER_ACTION, 
+            source : PayLoadConstants.SERVER_ACTION, 
             action : action
         }; 
 
+        console.log("DISPATCH");
         this.dispatch(payload);
     },
 
@@ -24,7 +27,7 @@ var WriteDispatcher = assign(new Dispatcher(), {
      */
     handleViewAction : function(action) {
         var payload = {
-            source : PayLoadSources.VIEW_ACTION, 
+            source : PayLoadConstants.VIEW_ACTION, 
             action : action
         }; 
         this.dispatch(payload);

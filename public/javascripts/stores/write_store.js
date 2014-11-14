@@ -1,6 +1,8 @@
+"use strict";
+
 var WriteDispatcher = require('../dispatcher/write_dispatcher'),
     WriteConstants = require('../constants/write_constants'),
-    WriteUtils = require('../utils/write_utils'),
+//    WriteUtils = require('../utils/write_utils'),
     EventEmitter = require('events').EventEmitter,
     assign = require('object-assign'),
 
@@ -64,7 +66,8 @@ WriteStore.dispatchToken = WriteDispatcher.register(function(payload) {
             WriteStore.emitChange();
             break;
 
-        case ActionType.RECEIVE_SERVER_DOCUMENT:
+        case ActionTypes.RECEIVE_SERVER_DOCUMENT:
+            console.log("SERVER DOC");
             WriteStore.receiveDocument(action.serverDocument);       
             WriteStore.emitChange();
             break;

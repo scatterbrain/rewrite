@@ -21,7 +21,9 @@ var gulpif = require('gulp-if');
 
 // Build options.
 var opts = {
-	jsEntryFile: './public/javascripts/writer.jsx',
+        //What files browserify will use as start points for deps for for writer_bundle.js
+	writerBundleEntries: ['./public/javascripts/writer.jsx'], //, './public/javascripts/stores/write_store.js'],
+
 	bundleName: 'writer_bundle.js',
 	app: {
 		globs: {
@@ -56,7 +58,7 @@ function jsBundler (bundler) {
                 // update below with the correct path to react/react.js node_module
                 //.require('./node_modules/react/react.js', { expose: 'react'})
                 // -r public/javascripts/comments.jsx
-                //.require(opts.jsEntryFile, {expose: 'myComments'})
+                //.require('./public/javascripts/comments.jsx', {expose: 'myComments'})
                 .bundle()
 		// Log errors if they happen.
 		.on('error', function (e) {
@@ -73,12 +75,11 @@ function jsBundler (bundler) {
 // Live watch js changes.
 gulp.task('watchify', function () {
         var args = {
-            entries: [opts.jsEntryFile], // Only need initial file, browserify finds the deps
+            entries: opts.writerBundleEntries, // Only need initial file, browserify finds the deps
             debug: true, // Gives us sourcemapping
             cache: {}, packageCache: {}, fullPaths: true // Requirement of watchify
         };
 	var b = browserify(args);
-	b.add(opts.jsEntryFile);
 
 	var bundler = watchify(b);
 
@@ -90,7 +91,7 @@ gulp.task('watchify', function () {
 // One-off js bundle.
 gulp.task('browserify', function () {
         var args = {
-            entries: [opts.jsEntryFile], // Only need initial file, browserify finds the deps
+            entries: opts.writerBundleEntries, // Only need initial file, browserify finds the deps
             debug: true // Gives us sourcemapping
         };
 
