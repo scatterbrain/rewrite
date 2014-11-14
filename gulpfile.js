@@ -21,8 +21,8 @@ var gulpif = require('gulp-if');
 
 // Build options.
 var opts = {
-	jsEntryFile: './public/javascripts/comments.jsx',
-	bundleName: 'app.js',
+	jsEntryFile: './public/javascripts/writer.jsx',
+	bundleName: 'writer_bundle.js',
 	app: {
 		globs: {
 			css: {
@@ -46,21 +46,28 @@ var opts = {
 
 // Bundle js.
 function jsBundler (bundler) {
-        // browserify -r react -r public/javascripts/comments.jsx > public/bundle/javascripts/bundle.js    
-	return  bundler
+        gutil.log("Starting bundle");
+    // 
+	var bundle = bundler
+                //Note, if you need to require react or scripts from bundle,
+                //they need to be required with -r flag
+                // browserify -r react -r public/javascripts/comments.jsx > public/bundle/javascripts/bundle.js   
                 // -r react
                 // update below with the correct path to react/react.js node_module
-                .require('./node_modules/react/react.js', { expose: 'react'})
+                //.require('./node_modules/react/react.js', { expose: 'react'})
                 // -r public/javascripts/comments.jsx
-                .require(opts.jsEntryFile, {expose: 'myComments'})
+                //.require(opts.jsEntryFile, {expose: 'myComments'})
                 .bundle()
 		// Log errors if they happen.
-		//.on('error', function (e) {
-		//	gutil.log('Browserify Error', e.message);
-		//})
+		.on('error', function (e) {
+			gutil.log('Browserify Error', e.message);
+		})
 		.pipe(source(opts.bundleName))
 		//.pipe(streamify(uglify()))
 		.pipe(gulp.dest(opts.dist.paths.javascript));
+
+        gutil.log("Bundling done");                
+        return bundle;
 }
 
 // Live watch js changes.

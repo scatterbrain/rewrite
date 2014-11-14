@@ -6,7 +6,7 @@ var express = require('express'),
 var jsx = require('node-jsx');
 jsx.install({extension: '.jsx'});
 
-var comments = React.createFactory(require('./../public/javascripts/comments.jsx'));
+var comments = React.createFactory(require('./../public/javascripts/components/comments.jsx'));
 
 /* GET home page. */
 router.get('/', function(req, res) {
