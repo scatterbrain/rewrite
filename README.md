@@ -24,6 +24,10 @@ Open localhost:3000 in browser.
 
 ##Running the container
 
+`docker run -p 42875:3000 --rm <name of the image>`
+
+Or as daemon:
+
 `docker run -p 42875:3000 -d <name of the image>`
 
 On OS X find out your boot2docker IP:
