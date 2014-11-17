@@ -1,0 +1,16 @@
+{
+  // other settings...
+  // ENVIRONMENTS
+//  "browser": true,
+ // "node": true,
+  // others (e.g. yui, mootools, rhino, worker, etc.)
+  "globals": {
+    //"$":false,
+    //"jquery":false,
+    //"angular":false,
+    "document": true, 
+    "require": true, 
+    "module": true
+    // other explicit global names to exclude
+  }
+}

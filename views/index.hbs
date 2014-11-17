@@ -5,16 +5,10 @@
     {{{content}}}
 </div>
 
-<script src="bundle/javascripts/app.js"></script>
+<div id="editor">
+    {{{editor}}}
+</div>
 
-<script>
-    var React = require('react')
-    var CommentBox = require('myComments');
-    var CommentBoxElement = React.createElement(
-            CommentBox, 
-            {url: "comments", pollInterval: 2000});
-    React.renderComponent(
-      CommentBoxElement,
-      document.getElementById('content')
-    );
-</script>
+<script src="bundle/javascripts/writer_bundle.js"></script>
+
+
