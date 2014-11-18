@@ -11,19 +11,20 @@ var editor = React.createFactory(require('./../public/javascripts/components/mar
 
 /* GET home page. */
 router.get('/', function(req, res) {
-
-    console.log("Context");
     var context = require('rabbit.js').createContext();
     context.on('ready', function() {
         console.log("Ready");
-      var pub = context.socket('PUSH');//, sub = context.socket('SUB');
-//      sub.pipe(process.stdout);
-  //    sub.connect('logs', function() {
-        pub.connect('logs', function() {
-            console.log("WRITE");
-          pub.write(JSON.stringify({welcome: 'rabbit.js'}), 'utf8');
+        var request = context.socket('REQ');
+        request.on("data", function(message) {
+            console.log('Handler received message - %j', message);
+            //            request.close(); SHOULD BE CLOSED AT SOME LATER TIME. DOESN'T
+            //            WORK HERE
+
         });
-      //});
+
+        request.connect('doc.request', function() {
+            request.write(JSON.stringify({welcome: 'rabbit.js'}), 'utf8');
+        });
     });
 
     var props = {url : "comments", pollInterval : 2000};
