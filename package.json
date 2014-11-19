@@ -19,6 +19,7 @@
     "morgan": "~1.5.0",
     "node-jsx": "^0.12.0",
     "object-assign": "^1.0.0",
+    "rabbit.js": "^0.4.2",
     "react": "~0.12.0",
     "react-tools": "^0.12.0",
     "serve-favicon": "~2.1.6",
