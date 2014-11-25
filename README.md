@@ -3,6 +3,12 @@
 ##Install modules
 `npm install`
 
+Needs rabbitmq:
+
+`brew install rabbitmq`
+
+Needs gitdo running (see gitdo doc)
+
 ## Browserify continuously
 `gulp watchify`
 
@@ -12,6 +18,10 @@
 Open localhost:3000 in browser.
 
 ##Start with automatically reloading server
+
+Run rabbitmq
+`rabbitmq-server`
+
 `npm install -g nodemon`
 `nodemon`
 
