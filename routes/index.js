@@ -14,11 +14,12 @@ router.get('/', function(req, res) {
 
     //RabbitMQ test
     var remote = Remote.createRemote('doc.request');
+    //Remote connection established, write request
     remote.on('ready', function() {
         remote.write(JSON.stringify({welcome: 'rabbit.js'}));
     });
+    //When we receive reply data
     remote.on('data', function() {
-        console.log("REMOTE DATA RECEIVED ");
         remote.close();
     });
     remote.connect();
