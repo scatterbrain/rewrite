@@ -61,7 +61,6 @@ var MarkdownEditor = React.createClass({
      */
     handleChange: function() {
         WriteViewActionCreator.textEdited(this.refs.textarea.getDOMNode().value);
-        //this.setState({value: this.refs.textarea.getDOMNode().value});
     },
     
     render: function() {

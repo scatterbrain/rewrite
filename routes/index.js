@@ -7,12 +7,12 @@ var express = require('express'),
 var jsx = require('node-jsx');
 jsx.install({extension: '.jsx'});
 
-var comments = React.createFactory(require('./../public/javascripts/components/comments.jsx'));
 var editor = React.createFactory(require('./../public/javascripts/components/markdown_editor.jsx'));
 
 /* GET home page. */
 router.get('/', function(req, res) {
-   
+
+    //RabbitMQ test
     var remote = Remote.createRemote('doc.request');
     remote.on('ready', function() {
         remote.write(JSON.stringify({welcome: 'rabbit.js'}));
@@ -23,10 +23,9 @@ router.get('/', function(req, res) {
     });
     remote.connect();
 
-    var props = {url : "comments", pollInterval : 2000};
-    var commentContents = React.renderToString(comments(props));
-    var editorContents = React.renderToString(editor({}));
-    res.render('index', { title: 'Express', content : commentContents, editor : editorContents });
+    var props = {};
+    var editorContents = React.renderToString(editor(props));
+    res.render('index', { title: 'Express', editor : editorContents });
 });
 
 module.exports = router;
