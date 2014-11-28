@@ -9,5 +9,7 @@ React.render(
     document.getElementById('editor')
 );
 
-WriteWebAPIUtils.getDocument();
+
+//TODO Uncomment this when you want to read the document from the server
+//WriteWebAPIUtils.getDocument();
 
