@@ -4,8 +4,8 @@ var React = require('react'),
     marked = require('marked'), 
     WriteStore = require('../stores/write_store'), 
     WriteViewActionCreator = require('../actions/write_view_action_creators'),
-    util = require('util');
-    
+    util = require('util'),
+    CodeMirror = React.createFactory(require('react-code-mirror'));     
 
 marked.setOptions({
     renderer: new marked.Renderer(),
@@ -59,18 +59,26 @@ var MarkdownEditor = React.createClass({
     /**
      * Something was written on the text field. React callback.
      */
-    handleChange: function() {
-        WriteViewActionCreator.textEdited(this.refs.textarea.getDOMNode().value);
+    handleChange: function(textValue) {
+        WriteViewActionCreator.textEdited(textValue);
     },
     
     render: function() {
         return (
             <div className="MarkdownEditor">
             <h3>Input</h3>
-            <textarea
-            onChange={this.handleChange}
-            ref="textarea"
-            defaultValue={this.state.document.text} />
+                <CodeMirror
+                    textAreaClassName={['form-control']}
+                    value={this.state.document.text}
+                    mode="markdown"
+                    theme="solarized"
+                    lineNumbers={false}
+                    firstLineNumber={10}
+                    onChange={function (e) {
+                              this.handleChange(e.target.value);
+                            }.bind(this)}
+                />
+
             <h3>Output</h3>
             <div
             className="content"
