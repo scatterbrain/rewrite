@@ -65,27 +65,28 @@ var MarkdownEditor = React.createClass({
     
     render: function() {
         return (
-            <div className="MarkdownEditor">
-            <h3>Input</h3>
-                <CodeMirror
-                    textAreaClassName={['form-control']}
-                    value={this.state.document.text}
-                    mode="markdown"
-                    theme="twilight"
-                    lineNumbers={false}
-                    firstLineNumber={10}
-                    onChange={function (e) {
-                              this.handleChange(e.target.value);
-                            }.bind(this)}
-                />
+            <div>
+                <div id="in">
+                    <CodeMirror
+                        textAreaClassName={['form-control']}
+                        value={this.state.document.text}
+                        mode="markdown"
+                        theme="rewrite"
+                        lineNumbers={false}
+                        firstLineNumber={1}
+                        extraKeys={{"Enter": "newlineAndIndentContinueMarkdownList"}}
+                        onChange={function (e) {
+                        this.handleChange(e.target.value);
+                        }.bind(this)}
+                    />
+                </div>
 
-            <h3>Output</h3>
-            <div
-            className="content"
-            dangerouslySetInnerHTML={{
-                __html: marked(this.state.document.text)
-            }}
-            />
+                <div id="out"
+                    className="content"
+                    dangerouslySetInnerHTML={{
+                    __html: marked(this.state.document.text)
+                    }}
+                />
             </div>
         );
     }
