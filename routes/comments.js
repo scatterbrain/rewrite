@@ -1,5 +1,3 @@
-var browserify = require('browserify');
-var React = require('react');
 var express = require('express');
 var router = express.Router();
 

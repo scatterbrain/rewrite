@@ -5,7 +5,7 @@ var React = require('react'),
     WriteStore = require('../stores/write_store'), 
     WriteViewActionCreator = require('../actions/write_view_action_creators'),
     util = require('util'),
-    CodeMirror = React.createFactory(require('react-code-mirror'));
+    CodeMirror = require('react-code-mirror');
 
 marked.setOptions({
     renderer: new marked.Renderer(),
