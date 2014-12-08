@@ -1,3 +1,7 @@
+body {
+    background-color: #FCFFF5;
+}
+
 #in {
     position: fixed;
     top: 0;
@@ -17,13 +21,46 @@
     left: 50%;
     bottom: 0;
     overflow: auto;
-    color: #444;
-    font-family:Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
     font-size: 16px;
     line-height: 1.5em;
     padding: 15px;
+    color: #193441;
+    font-family: "Lucida Sans", sans-serif;
     
 }
+
+
+#out h1 {
+	border-bottom: 5px solid #f0f1e7;
+	color: #3E606F;
+	font-family: "Marvel", sans-serif;
+	font-size: 54px;
+	font-weight: normal;
+	line-height: 48px;
+	margin: 0 0 26px;
+	padding: 0 0 24px;
+	text-transform: uppercase;
+}
+
+#out h2 {
+	color: #3E606F;
+	font-family: "Marvel", sans-serif;
+	font-size: 28px;
+	font-weight: normal;
+	line-height: 30px;
+	margin: 0 0 18px;
+	padding: 12px 0 0;
+	text-transform: uppercase;
+}
+
+#out p {
+	color: #193441;
+	font-family: "Lucida Sans", sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+	margin: 0 0 24px;
+}
+
 
 /* ------------------------------------------
   CodeMirror
@@ -33,6 +70,7 @@
   font-size:16px;
   line-height:1.4em;
   -webkit-font-smoothing:subpixel-antialiased;
+  background-color:  #FCFFF5;
   }
 .code .CodeMirror-scroll {
   min-height:360px;
@@ -88,53 +126,41 @@
 
 /* rewrite theme based on prose.io
  -------------------- */
-/* Dark Grey */
-.cm-s-rewrite                    { color:#3D494E; }
-.cm-s-rewrite span.cm-header     { color:#3D494E; font-weight:bold;}
-.cm-s-rewrite span.cm-variable-2 { color:#3D494E; }
+.cm-s-rewrite                    { color:#193441; }
+.cm-s-rewrite span.cm-header     { color:#3E606F; font-weight:bold;}
+.cm-s-rewrite span.cm-variable-2 { color:#B64926; }
 
-/* Medium Grey */
 .cm-s-rewrite span.cm-meta       { color:#516066; }
 .cm-s-rewrite span.cm-hr         { color:#516066;}
 
-/* Lighter Grey */
-.cm-s-rewrite span.cm-comment    { color:#868f93; }
-.cm-s-rewrite span.cm-qualifier  { color:#868f93; }
+.cm-s-rewrite span.cm-comment    { color:#91AA9D; }
+.cm-s-rewrite span.cm-qualifier  { color:#91AA9D; }
 
-/* Dark Blue/Green */
 .cm-s-rewrite span.cm-number     { color:#197987; }
 .cm-s-rewrite span.cm-variable   { color:#197987; }
 .cm-s-rewrite span.cm-builtin    { color:#197987; }
 .cm-s-rewrite span.cm-link       { color:#197987; text-decoration:underline;}
 .cm-s-rewrite span.cm-tag        { color:#197987; }
 
-/* Medium Blue/Green */
 .cm-s-rewrite span.cm-string     { color:#48abb9; }
 .cm-s-rewrite span.cm-string-2   { color:#48abb9; }
 .cm-s-rewrite span.cm-quote      { color:#48abb9;}
 .cm-s-rewrite span.cm-atom       { color:#48abb9; }
 
-/* Light Blue/Green */
-/*.cm-s-rewrite .CodeMirror-selected { background:#90d5df; }*/
-
-/* Turtle Green */
 .cm-s-rewrite span.cm-property   { color:#82a367; }
 .cm-s-rewrite span.cm-operator   { color:#82a367; }
 .cm-s-rewrite span.cm-variable-3 { color:#82a367; }
 
-/* Light Turtle Green */
 .cm-s-rewrite span.cm-attribute  { color:#90bb74; }
 .cm-s-rewrite span.cm-def        { color:#90bb74; }
 
-/* Brick */
 .cm-s-rewrite span.cm-keyword    { color:#ec6c45; }
 .cm-s-rewrite span.cm-bracket    { color:#ec6c45; }
 
-/* Darker Brick */
 .cm-s-rewrite span.cm-error      { color:#e45346; }
 
-.cm-s-rewrite span.cm-em         { font-style:italic; }
-.cm-s-rewrite span.cm-strong     { font-weight:bold; }
+.cm-s-rewrite span.cm-em         { color: #B64926; font-style:italic; }
+.cm-s-rewrite span.cm-strong     { color: #B64926; font-weight:bold; }
 
 /* STOP */
 /* The rest of this file contains styles related to the mechanics of
