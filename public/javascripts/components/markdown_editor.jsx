@@ -67,6 +67,7 @@ var MarkdownEditor = React.createClass({
         return (
             <div>
                 <div id="in">
+                    <EditorToolBar /> 
                     <CodeMirror
                         textAreaClassName={['form-control']}
                         value={this.state.document.text}
@@ -90,6 +91,24 @@ var MarkdownEditor = React.createClass({
             </div>
         );
     }
+});
+
+var EditorToolBar = React.createClass({
+
+    handleSubmit : function(e) {
+      e.preventDefault();
+      WriteViewActionCreator.textSaved(); 
+    }, 
+
+    render : function() {
+      return (
+        <div className="editor-toolbar">
+          <form onSubmit={this.handleSubmit}>
+            <button>PUBLISH</button>
+          </form>
+        </div>
+      ); 
+  }
 });
 
 module.exports = MarkdownEditor;

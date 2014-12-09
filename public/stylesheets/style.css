@@ -1,5 +1,9 @@
+/*
+ * https://color.adobe.com/Corporate-Orange-Blue-color-theme-121815/edit/?copy=true&base=1&rule=Custom&selected=2&name=Copy%20of%20Corporate%20Orange%20%20Blue&mode=rgb&rgbvalues=0.188235,0.258824,0.411765,0.568627,0.745098,0.831373,0.85098,0.909804,0.960784,1,1,1,0.94902,0.380392,0.00392157&swatchOrder=0,1,2,3,4
+ */
+ 
 body {
-    background-color: #FCFFF5;
+    background-color: #FFFFFF;
 }
 
 #in {
@@ -23,16 +27,39 @@ body {
     overflow: auto;
     font-size: 16px;
     line-height: 1.5em;
-    padding: 15px;
+    padding: 40px 15px 15px 15px;
     color: #193441;
     font-family: "Lucida Sans", sans-serif;
     
 }
 
+#in .editor-toolbar {
+    margin: 10px 0 10px 0;
+    background-color: #FFFFFF;
+    text-align: right;
+}
+
+#in .editor-toolbar button {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  border: none;
+  font-family: "Lucida Sans";
+  color: #ffffff;
+  font-size: 12px;
+  background: #F26101;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+}
+
+#in .editor-toolbar button:hover {
+  text-decoration: none;
+  background: #F28D17;  
+}
 
 #out h1 {
 	border-bottom: 5px solid #f0f1e7;
-	color: #3E606F;
+	color: #91BED4;
 	font-family: "Marvel", sans-serif;
 	font-size: 54px;
 	font-weight: normal;
@@ -43,7 +70,7 @@ body {
 }
 
 #out h2 {
-	color: #3E606F;
+	color: #91BED4;
 	font-family: "Marvel", sans-serif;
 	font-size: 28px;
 	font-weight: normal;
@@ -54,13 +81,12 @@ body {
 }
 
 #out p {
-	color: #193441;
+	color: #304269;
 	font-family: "Lucida Sans", sans-serif;
 	font-size: 16px;
 	line-height: 24px;
 	margin: 0 0 24px;
 }
-
 
 /* ------------------------------------------
   CodeMirror
@@ -70,10 +96,12 @@ body {
   font-size:16px;
   line-height:1.4em;
   -webkit-font-smoothing:subpixel-antialiased;
-  background-color:  #FCFFF5;
-  }
+  background-color:  #FFFFFF;
+  height: 100%;
+}
+
 .code .CodeMirror-scroll {
-  min-height:360px;
+  min-height:100%;
   }
 
 .CodeMirror-scroll {
@@ -126,8 +154,8 @@ body {
 
 /* rewrite theme based on prose.io
  -------------------- */
-.cm-s-rewrite                    { color:#193441; }
-.cm-s-rewrite span.cm-header     { color:#3E606F; font-weight:bold;}
+.cm-s-rewrite                    { color:#304269; }
+.cm-s-rewrite span.cm-header     { color:#91BED4; font-weight:bold;}
 .cm-s-rewrite span.cm-variable-2 { color:#B64926; }
 
 .cm-s-rewrite span.cm-meta       { color:#516066; }
@@ -159,8 +187,8 @@ body {
 
 .cm-s-rewrite span.cm-error      { color:#e45346; }
 
-.cm-s-rewrite span.cm-em         { color: #B64926; font-style:italic; }
-.cm-s-rewrite span.cm-strong     { color: #B64926; font-weight:bold; }
+.cm-s-rewrite span.cm-em         { color: #F26101; font-style:italic; }
+.cm-s-rewrite span.cm-strong     { color: #F26101; font-weight:bold; }
 
 /* STOP */
 /* The rest of this file contains styles related to the mechanics of
