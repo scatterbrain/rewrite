@@ -17,6 +17,11 @@ RemoteConnection.prototype.connect = function() {
     request.on("data", function(message) {
       self.emit('data', message);
     });
+    
+    request.on("error", function(error) {
+      console.log("ERROR: " + error);
+      self.emit('error', error);
+    });
 
     request.connect(self.queue, function() {
       self.emit('ready');

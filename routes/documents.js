@@ -12,12 +12,14 @@ router.get('/', function(req, res) {
     remote = Remote.createRemote('doc.request');
     //Remote connection established, write request
     remote.on('ready', function() {
+        console.log("READY");
         remote.write(JSON.stringify(cmd));
     });
     //When we receive reply data
     remote.on('data', function(data) {
       data = JSON.parse(data);
 
+      console.log("Data " + util.inspect(data));
       replyDoc = WriteStore.getDocument();       
       if (data.result === 0) {
         replyDoc.text = data.doc.text; 
@@ -27,10 +29,17 @@ router.get('/', function(req, res) {
 
       res.setHeader('Content-Type', 'application/json');    
       res.send(JSON.stringify(replyDoc));
-      
+      console.log("WRITE"); 
       remote.close();
     });
+
+    remote.on('error', function(error) {
+        console.log("Error occurred" + error);
+        remote.close();
+    });
+
     remote.connect();
+    console.log("CONNECT");
 });
 
 router.post('/', function(req, res) {
@@ -46,6 +55,10 @@ router.post('/', function(req, res) {
     //Remote connection established, write request
     remote.on('ready', function() {
         remote.write(JSON.stringify(rabbitDoc));
+    });
+    remote.on('error', function(error) {
+        console.log("Error occurred" + error);
+        remote.close();      
     });
     //When we receive reply data
     remote.on('data', function(data) {
