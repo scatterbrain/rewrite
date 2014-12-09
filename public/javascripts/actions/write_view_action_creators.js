@@ -9,12 +9,15 @@ var WriteDispatcher = require('../dispatcher/write_dispatcher'),
 module.exports = {
     textEdited : function(text) {
         WriteDispatcher.handleViewAction({
-            type: ActionTypes.EDIT, 
-            text: text
+            type : ActionTypes.EDIT, 
+            text : text
         });
     }, 
 
     textSaved : function() {
+        WriteDispatcher.handleViewAction({
+          type : ActionTypes.PUBLISH,
+        });
         var document = WriteStore.getDocument();
         WriteAPIUtils.updateDocument(document);
     }

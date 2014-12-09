@@ -43,9 +43,7 @@ var WriteStore = assign({}, EventEmitter.prototype, {
 
     getDocument : function() {
         if (!_currentDocument) {
-            return this.createDocument('##Simple React/Flux/Node markdown editor\n\nType some *markdown* here!'
-                                      
-                                      );
+            this.createDocument('##Simple React/Flux/Node markdown editor\n\nType some *markdown* here!');
         }
 
         return assign({}, _currentDocument);

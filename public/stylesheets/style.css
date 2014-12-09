@@ -39,6 +39,12 @@ body {
     text-align: right;
 }
 
+#in .editor-toolbar-empty {
+    margin: 10px 0 10px 0;
+    background-color: #FFFFFF;
+    padding: 14px 0 13px 0;
+}
+
 #in .editor-toolbar button {
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
@@ -55,6 +61,15 @@ body {
 #in .editor-toolbar button:hover {
   text-decoration: none;
   background: #F28D17;  
+}
+
+.button-appear-enter {
+  opacity: 0.01;
+  transition: opacity 5.5s ease-in;
+}
+
+.button-appear-enter.button-appear-active {
+  opacity: 1;
 }
 
 #out h1 {

@@ -5,7 +5,8 @@ module.exports = {
     ActionTypes : keyMirror({
         CREATE : null,
         EDIT : null, 
-        RECEIVE_SERVER_DOCUMENT : null
+        RECEIVE_SERVER_DOCUMENT : null, 
+        PUBLISH : null,
     }), 
 
     PayLoadSources : keyMirror({

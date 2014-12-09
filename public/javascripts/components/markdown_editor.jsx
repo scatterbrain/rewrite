@@ -1,8 +1,9 @@
 "use strict";
 
-var React = require('react'), 
+var React = require('react/addons'), 
     marked = require('marked'), 
     WriteStore = require('../stores/write_store'), 
+    DocumentModifiedStore = require('../stores/document_modified_store'),
     WriteViewActionCreator = require('../actions/write_view_action_creators'),
     util = require('util'),
     CodeMirror = require('react-code-mirror');
@@ -20,7 +21,8 @@ marked.setOptions({
 
 function getStateFromStores() {
     return {
-        document : WriteStore.getDocument()
+        document : WriteStore.getDocument(),
+        modified : DocumentModifiedStore.isModified()
     };
 }
 
@@ -30,7 +32,6 @@ var MarkdownEditor = React.createClass({
      * Fetch the initial state to this.state. React callback.
      */
     getInitialState: function() {
-        console.log("Initial state " + util.inspect(getStateFromStores()));
         return getStateFromStores();
     },
 
@@ -93,21 +94,48 @@ var MarkdownEditor = React.createClass({
     }
 });
 
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
 var EditorToolBar = React.createClass({
+  getInitialState : function() {
+    return getStateFromStores();
+  }, 
 
-    handleSubmit : function(e) {
-      e.preventDefault();
-      WriteViewActionCreator.textSaved(); 
-    }, 
+  componentDidMount : function() {
+    DocumentModifiedStore.addChangeListener(this._onChange);
+  }, 
 
-    render : function() {
+  componentWillUnmount : function() {
+    DocumentModifiedStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange : function()
+  {
+    this.setState(getStateFromStores());
+  },
+
+  handleSubmit : function(e) {
+    e.preventDefault();
+    WriteViewActionCreator.textSaved(); 
+  }, 
+
+  render : function() {
+    if (this.state.modified) {    
       return (
         <div className="editor-toolbar">
-          <form onSubmit={this.handleSubmit}>
-            <button>PUBLISH</button>
-          </form>
+        <form onSubmit={this.handleSubmit}>
+        <ReactCSSTransitionGroup transitionName="button-appear">      
+          <button key="publish-button">PUBLISH</button>      
+        </ReactCSSTransitionGroup>
+        </form>
         </div>
       ); 
+    } else {
+      return (
+        <div className="editor-toolbar-empty">
+        </div>
+      ); 
+    }
   }
 });
 
