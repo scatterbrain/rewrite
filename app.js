@@ -13,6 +13,7 @@ var comments = require('./routes/comments');
 var documents = require('./routes/documents');
 var auth = require('./routes/auth');
 var session = require('express-session');
+var util = require('util');
 
 var app = express();
 
@@ -37,6 +38,12 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+
+// Pass {{user}} variable to all templates
+app.use(function(req, res, next) {
+    res.locals.user = req.user;
+    next();
+});
 
 // routes ======================================================================
 app.use('/', routes);
