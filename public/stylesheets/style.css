@@ -45,6 +45,10 @@ body {
     padding: 14px 0 13px 0;
 }
 
+#in .editor-toolbar-empty button {
+    opacity: 0.00;
+}
+
 #in .editor-toolbar button {
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
@@ -65,7 +69,7 @@ body {
 
 .button-appear-enter {
   opacity: 0.01;
-  transition: opacity 5.5s ease-in;
+  transition: opacity 0.5s ease-in;
 }
 
 .button-appear-enter.button-appear-active {

@@ -120,22 +120,19 @@ var EditorToolBar = React.createClass({
   }, 
 
   render : function() {
-    if (this.state.modified) {    
-      return (
-        <div className="editor-toolbar">
-        <form onSubmit={this.handleSubmit}>
-        <ReactCSSTransitionGroup transitionName="button-appear">      
-          <button key="publish-button">PUBLISH</button>      
-        </ReactCSSTransitionGroup>
-        </form>
-        </div>
-      ); 
-    } else {
-      return (
-        <div className="editor-toolbar-empty">
-        </div>
-      ); 
+    var button = "";
+    if (this.state.modified) {   
+        button = <button key="publish-button">PUBLISH</button>; 
     }
+    return (
+      <div className="editor-toolbar">
+      <form onSubmit={this.handleSubmit}>
+      <ReactCSSTransitionGroup transitionName="button-appear">
+        {button}
+      </ReactCSSTransitionGroup>
+      </form>
+      </div>
+    ); 
   }
 });
 
