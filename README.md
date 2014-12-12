@@ -1,5 +1,10 @@
 #Writing is reactive rewriting
 
+Very basic isomoporphic React/Flux markdown editor with Node/Git backend. Uses
+GitDo (https://github.com/scatterbrain/gitdo) as the document backend. 
+
+Doesn't have support for more than one document or anything crazy like that. 
+
 ##Install modules
 `npm install`
 
